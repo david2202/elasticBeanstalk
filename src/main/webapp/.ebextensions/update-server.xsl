@@ -13,7 +13,7 @@
     <xsl:template match="GlobalNamingResources[not(Environment[@name='maxExemptions'])]">
         <xsl:copy>
             <xsl:apply-templates/>
-            <Environment name="maxExemptions" value="10" type="java.lang.Integer" override="false"/>
+            <Environment name="apEnvironment" value="${AP_ENV}" type="java.lang.String" override="false"/>
         </xsl:copy>
     </xsl:template>
 </xsl:stylesheet>
