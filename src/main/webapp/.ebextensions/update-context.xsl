@@ -10,16 +10,28 @@
         </xsl:copy>
     </xsl:template>
 
-    <xsl:template match="Context[not(ResourceLink[@name='apEnvironment'])]">
+    <xsl:template match="Context">
         <xsl:copy>
-            <xsl:apply-templates/>
-            <ResourceLink name="apEnvironment" global="apEnvironment" type="java.lang.String" />
+            <xsl:apply-templates select="@* | node()"/>
+            <xsl:if test="not(ResourceLink[@name='apEnvironment'])">
+                <ResourceLink name="apEnvironment" global="apEnvironment" type="java.lang.String" />
+            </xsl:if>
+            <xsl:if test="not(ResourceLink[@name='url'])">
+                <ResourceLink name="url" global="url" type="java.lang.String" />
+            </xsl:if>
         </xsl:copy>
     </xsl:template>
-    <xsl:template match="Context/ResourceLink[@name='apEnvironment']">
+    <xsl:template match="ResourceLink[@name='apEnvironment']">
         <xsl:copy>
             <xsl:attribute name="name">apEnvironment</xsl:attribute>
             <xsl:attribute name="global">apEnvironment</xsl:attribute>
+            <xsl:attribute name="type">java.lang.String</xsl:attribute>
+        </xsl:copy>
+    </xsl:template>
+    <xsl:template match="ResourceLink[@name='url']">
+        <xsl:copy>
+            <xsl:attribute name="name">url</xsl:attribute>
+            <xsl:attribute name="global">url</xsl:attribute>
             <xsl:attribute name="type">java.lang.String</xsl:attribute>
         </xsl:copy>
     </xsl:template>
