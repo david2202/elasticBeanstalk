@@ -11,6 +11,9 @@
 	Spring URL: ${springUrl}
 	<br>
 	JSTL URL: ${url}
+	<br>
+	Environment: ${environment}
+	<br>
 </body>
 
 </html>
