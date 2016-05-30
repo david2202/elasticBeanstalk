@@ -24,6 +24,10 @@ public class HomeController {
     public ModelAndView welcome(ModelAndView mav) throws NamingException {
         String value = context.lookup("apEnvironment").toString();
         mav.addObject("environment", value);
+        String url = context.lookup("url").toString();
+        mav.addObject("url", url);
+        String catalinaProperty = context.lookup("catalinaProperty").toString();
+        mav.addObject("catalinaProperty", catalinaProperty);
         mav.setViewName("welcome");
         return mav;
     }

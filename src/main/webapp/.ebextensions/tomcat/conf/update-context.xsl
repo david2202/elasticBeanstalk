@@ -19,6 +19,9 @@
             <xsl:if test="not(ResourceLink[@name='url'])">
                 <xsl:call-template name="resourceLinkUrl" />
             </xsl:if>
+            <xsl:if test="not(ResourceLink[@name='catalinaProperty'])">
+                <xsl:call-template name="resourceLinkCatalinaProperty" />
+            </xsl:if>
         </xsl:copy>
     </xsl:template>
 
@@ -36,5 +39,13 @@
 
     <xsl:template name="resourceLinkUrl">
         <ResourceLink name="url" global="url" type="java.lang.String" />
+    </xsl:template>
+
+    <xsl:template match="ResourceLink[@name='catalinaProperty']">
+        <xsl:call-template name="resourceLinkCatalinaProperty" />
+    </xsl:template>
+
+    <xsl:template name="resourceLinkCatalinaProperty">
+        <ResourceLink name="catalinaProperty" global="catalinaProperty" type="java.lang.String" />
     </xsl:template>
 </xsl:stylesheet>

@@ -21,6 +21,9 @@
             <xsl:if test="not(Environment[@name='url'])">
                 <xsl:call-template name="environmentUrl" />
             </xsl:if>
+            <xsl:if test="not(Environment[@name='catalinaProperty'])">
+                <xsl:call-template name="environmentCatalinaProperty" />
+            </xsl:if>
         </xsl:copy>
     </xsl:template>
 
@@ -29,7 +32,7 @@
     </xsl:template>
 
     <xsl:template name="environmentApEnvironment">
-        <Environment name="apEnvironment" value="${{AP_ENV}}" type="java.lang.String" override="false"/>
+        <Environment name="apEnvironment" value="${{ap.env}}" type="java.lang.String" override="false"/>
     </xsl:template>
 
     <xsl:template match="Environment[@name='url']">
@@ -38,5 +41,13 @@
 
     <xsl:template name="environmentUrl">
         <Environment name="url" value="{$url}" type="java.lang.String" override="false"/>
+    </xsl:template>
+
+    <xsl:template match="Environment[@name='catalinaProperty']">
+        <xsl:call-template name="environmentCatalinaProperty" />
+    </xsl:template>
+
+    <xsl:template name="environmentCatalinaProperty">
+        <Environment name="catalinaProperty" value="${{some.catalina.property}}" type="java.lang.String" override="false"/>
     </xsl:template>
 </xsl:stylesheet>
